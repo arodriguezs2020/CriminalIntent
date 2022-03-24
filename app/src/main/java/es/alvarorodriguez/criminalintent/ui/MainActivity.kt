@@ -1,7 +1,9 @@
-package es.alvarorodriguez.criminalintent
+package es.alvarorodriguez.criminalintent.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import es.alvarorodriguez.criminalintent.ui.crimes.CrimeListFragment
+import es.alvarorodriguez.criminalintent.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -11,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         val currentFragment =
             supportFragmentManager.findFragmentById(R.id.fragment_container)
         if (currentFragment == null) {
-            val fragment = CrimeFragment()
+            val fragment = CrimeListFragment.newInstance()
             supportFragmentManager
                 .beginTransaction()
                 .add(R.id.fragment_container, fragment)

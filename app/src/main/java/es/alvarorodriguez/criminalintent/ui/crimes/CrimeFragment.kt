@@ -1,15 +1,16 @@
-package es.alvarorodriguez.criminalintent
+package es.alvarorodriguez.criminalintent.ui.crimes
 
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
+import android.text.format.DateFormat
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import es.alvarorodriguez.criminalintent.R
+import es.alvarorodriguez.criminalintent.data.model.Crime
 
 class CrimeFragment : Fragment(R.layout.fragment_crime) {
 
@@ -21,6 +22,7 @@ class CrimeFragment : Fragment(R.layout.fragment_crime) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         crime = Crime()
+
     }
 
     private fun loadView(view: View) {
@@ -35,7 +37,8 @@ class CrimeFragment : Fragment(R.layout.fragment_crime) {
         loadView(view)
 
         dateButton.apply {
-            text = crime.date.toString()
+            val df = DateFormat.format("dd/mm/yyyy hh:mm:ss", crime.date)
+            text = df.toString()
             isEnabled = false
         }
     }
@@ -57,6 +60,7 @@ class CrimeFragment : Fragment(R.layout.fragment_crime) {
                 }
 
             }
+
             override fun onTextChanged(
                 sequence: CharSequence?,
                 start: Int,
@@ -65,6 +69,7 @@ class CrimeFragment : Fragment(R.layout.fragment_crime) {
             ) {
                 crime.title = sequence.toString()
             }
+
             override fun afterTextChanged(sequence: Editable?) {
                 // This one too
             }
